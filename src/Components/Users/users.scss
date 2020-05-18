@@ -1,0 +1,53 @@
+@import "../../less/mixin";
+
+.users-page{
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .user-section{
+    display: flex;
+
+    & + .user-section{
+      margin-top: 15px;
+    }
+    .ava-followed{
+      margin-right: 15px;
+
+      .person{
+        height: 120px;
+        border-radius: 8px 8px 0 0;
+        display: block;
+        @include bg-image;
+      }
+      .btn{
+        min-width: 120px;
+        font-size: 11px;
+        height: 40px;
+        margin-top: 0;
+        border-radius: 0 0 8px 8px;
+      }
+    }
+    .message-location{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-radius: 8px;
+      overflow: hidden;
+
+      .name, .location{
+        background: #32353a;
+        color: #fff;
+        padding: 5px 15px;
+      }
+      .message{
+        background: #fff;
+        padding: 15px;
+        flex: 1;
+      }
+    }
+  }
+}
+body{
+  background: red;
+}

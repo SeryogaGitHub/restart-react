@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+// import './css/style.min.css';
+import Navbar from "./Components/Navbar/Navbar";
+import {Route} from "react-router-dom";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import UsersContainer from "./Components/Users/UsersContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
+import Login from "./Components/Login/Login";
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/appReducer";
+import Placeholder from "./Components/common/Placeholder/Placeholder";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    const {initializeApp} = this.props;
+
+    initializeApp();
+  }
+
+  render() {
+    const {initialized} = this.props;
+    if(!initialized){
+      return <Placeholder/>
+    }
+
+    return (
+      <div className="grid">
+        <HeaderContainer/>
+
+        <div className="container">
+          <Navbar/>
+          <main className={'main-content'}>
+            <Route exact path='/' render={() => <ProfileContainer/>}/>
+            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+            <Route path='/users' render={() => <UsersContainer/>}/>
+            <Route path='/login' render={() => <Login/>}/>
+          </main>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+});
+
+export default connect(mapStateToProps, {initializeApp})(App);

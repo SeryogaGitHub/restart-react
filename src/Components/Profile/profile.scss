@@ -1,0 +1,77 @@
+@import "../../less/mixin";
+
+.profile-page{
+  .ava-description{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    grid-gap: 15px;
+  }
+  .ava{
+    img{
+      border-radius: 15px 15px 0 0;
+      display: block;
+    }
+    h2{
+      background: $gray;
+      color: white;
+      margin-bottom: 20px;
+      padding: 2px 10px 5px 10px;
+      text-align: center;
+      border-radius: 0 0 15px 15px;
+      @include nowrap;
+    }
+  }
+  .description{
+    overflow: hidden;
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+
+    h2{
+      background: $gray;
+      color: #fff;
+      margin: -15px -15px 10px;
+      padding: 5px 30px;
+      font-size: 20px;
+    }
+  }
+}
+
+.my-posts{
+  .form{
+    margin-bottom: 30px;
+  }
+
+  .post{
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+
+    & + .post{
+      margin-top: 10px;
+    }
+  }
+  .author-like{
+    margin: -15px -15px 10px;
+    background: $gray;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+  }
+  .person-message{
+    display: flex;
+
+    .person{
+      min-width: 70px;
+      max-width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      margin-right: 30px;
+      @include bg-image;
+    }
+  }
+}

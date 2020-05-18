@@ -1,0 +1,22 @@
+@import "../../less/mixin";
+
+.main-nav{
+  max-width: 250px;
+  margin-right: 30px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+
+  .links{
+
+    position: sticky;
+    top: 30px;
+
+    li + li{
+      margin-top: 10px;
+    }
+    .active{
+      color: $gold;
+    }
+  }
+}

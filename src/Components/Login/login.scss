@@ -1,0 +1,14 @@
+@import "../../less/mixin";
+
+.login-page{
+  background: #fff;
+  padding: 15px 30px 25px 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  h2{
+    margin-bottom: 15px;
+    text-align: center;
+  }
+}

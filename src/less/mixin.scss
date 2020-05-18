@@ -1,0 +1,54 @@
+$gray: #32353a;
+$gold: #f90;
+$red: #3f1c1c;
+
+@mixin transition($time: .2s, $function: linear, $element: all) {
+	transition: $element $time $function
+}
+.position-center{
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+}
+@mixin gradient ($origin: left, $start: #ffffff, $stop: #000000) {
+	background: $start;
+	background: linear-gradient($origin, $start, $stop);
+}
+.text-center{
+	text-align: center;
+}
+.flex-container{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -12.5px;
+
+	& > div{
+		margin: 15px;
+		flex: 1 0 400px;
+	}
+}
+@mixin nowrap{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@mixin bg-image{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.default{
+	input, button{
+		margin-top: 0;
+	}
+	label + [type="checkbox"]{
+		display: inline-block;
+		margin-left: 15px;
+	}
+	& + .default{
+		margin-top: 15px;
+	}
+}
