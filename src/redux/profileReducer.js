@@ -1,9 +1,9 @@
 import {profileAPI} from "../Components/api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_ID = "SET_USER_ID";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
+const ADD_POST = "profile/ADD-POST";
+const SET_USER_ID = "profile/SET_USER_ID";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
 
 let initialState = {
   userId: null,
@@ -75,32 +75,20 @@ export const setUserId = (userId) => ({type: SET_USER_ID, userId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
-export const getUserProfile = (userId) => {
-  return (dispatch) => {
-    profileAPI.userProfile(userId)
-      .then(response => {
-        dispatch(setUserProfile(response.data));
-      });
-  }
+export const getUserProfile = (userId) => async (dispatch) => {
+  const response = await profileAPI.userProfile(userId);
+  dispatch(setUserProfile(response.data));
 };
 
-export const getStatus = (userId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userId)
-      .then(response => {
-        dispatch(setStatus(response.data));
-      });
-  }
+export const getStatus = (userId) => async (dispatch) => {
+  const response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response.data));
 };
 
-export const updateStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status)
-      .then(response => {
-        if(response.data.resultCode === 0){
-          dispatch(setStatus(status));
-        }
-      });
+export const updateStatus = (status) => async (dispatch) => {
+  const response = await profileAPI.updateStatus(status);
+  if(response.data.resultCode === 0){
+    dispatch(setStatus(status));
   }
 };
 

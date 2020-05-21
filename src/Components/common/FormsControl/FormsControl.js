@@ -1,4 +1,5 @@
 import React from "react";
+import {Field} from "redux-form";
 
 export const FormControl = ({input, meta, child, ...props}) => {
   const hasError = meta.error && meta.touched;
@@ -20,4 +21,13 @@ export const Textarea = (props) => {
 export const Input = (props) => {
   const {input, meta, ...restProps} = props;
   return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
+};
+
+export const createField = (name, component, props, placeholder, validate, text = "") => {
+  return(
+    <div className={'default'}>
+      {text && <label htmlFor="lastName">Запамятати</label>}
+      <Field name={name} component={component} placeholder={placeholder} validate={validate} {...props}/>
+    </div>
+  )
 };

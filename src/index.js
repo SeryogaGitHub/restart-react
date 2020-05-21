@@ -6,7 +6,7 @@ import App from "./App";
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import "./less/style.scss";
+import "./scss/style.scss";
 
 const rerenderEntireTree = () => {
   ReactDOM.render(

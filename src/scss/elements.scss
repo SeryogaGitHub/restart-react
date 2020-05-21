@@ -86,6 +86,23 @@
 		max-height: 68px;
 		overflow: hidden;
 	}
+	button{
+		background: $gray;
+		color: #fff;
+		padding: 0 15px;
+		position: relative;
+		@include transition();
+
+		&:hover{
+			background: #3f1c1c;
+		}
+		&:first-child{
+			left: -10px;
+		}
+		&:last-child{
+			right: -10px;
+		}
+	}
 	li{
 		padding: 5px 10px;
 		margin: 0 2px;

@@ -73,39 +73,33 @@ export const setIsFetching = (fetching) => ({type: SET_IS_FETCHING, fetching});
 export const setProcessFollowed = (process, userId) =>
     ({type: SET_PROCESS_FOLLOWED, process, userId});
 
-export const requestUsers = (page, pageSize) => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
+export const requestUsers = (page, pageSize) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  const response = await userAPI.getUsers(page, pageSize);
 
-    userAPI.getUsers(page, pageSize)
-      .then(response => {
-        dispatch(setUsers(response.data.items));
-        dispatch(setTotalCount(response.data.totalCount));
-        dispatch(setIsFetching(false));
-        dispatch(setCurrentPage(page));
-      });
-  };
+  dispatch(setUsers(response.data.items));
+  dispatch(setTotalCount(response.data.totalCount));
+  dispatch(setIsFetching(false));
+  dispatch(setCurrentPage(page));
+};
+
+
+const followUnfollow = async (dispatch, userId, method, action) => {
+  const response = await userAPI.method(userId)
+  if(!response.data.resultCode){
+    dispatch(action(userId));
+  }
 };
 
 export const follow = (userId) => {
-  return (dispatch) => {
-    userAPI.unfollow(userId)
-      .then(response => {
-        if(!response.data.resultCode){
-          dispatch(followSuccess(userId));
-        }
-      });
+  return async (dispatch) => {
+    followUnfollow(dispatch, userId, follow, followSuccess(userId))
   };
 };
 
 export const unfollow = (userId) => {
-  return (dispatch) => {
-    userAPI.unfollow(userId)
-      .then(response => {
-        if(!response.data.resultCode){
-          dispatch(unfollowSuccess(userId));
-        }
-      });
+  return async (dispatch) => {
+    followUnfollow(dispatch, userId, unfollow, unfollowSuccess(userId))
   };
 };
 

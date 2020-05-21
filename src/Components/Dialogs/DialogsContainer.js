@@ -4,7 +4,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import withAuthRedirect from "../hoc/withAuthRedirect";
-import "./dialogs.scss";
+import "./Message/scss/dialogs.scss";
 
 class DialogsContainer extends React.Component{
   render(){

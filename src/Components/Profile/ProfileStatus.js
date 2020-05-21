@@ -1,21 +1,17 @@
 import React, {useState, useEffect} from "react";
 
 const ProfileStatus = (props) => {
-  // state = {
-  //   editMode: false,
-  //   status: this.props.status
-  // };
   const {updateStatus} = props;
 
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
-  //
+
   const onActivateEdit = () => {
     setEditMode(true);
   };
 
-  const onDeactivateEdit = (e) => {
-    setEditMode(false)
+  const onDeactivateEdit = () => {
+    setEditMode(false);
 
     updateStatus(status);
   };
@@ -25,19 +21,8 @@ const ProfileStatus = (props) => {
   };
 
   useEffect(() => {
-    console.log("useEffect");
     setStatus(status);
   }, [props.status]);
-  //
-  // componentDidUpdate(prevProps, prevState) {
-  //   const {status} = this.props;
-  //
-  //   if(prevProps.status !== status){
-  //     this.setState({
-  //       status: status
-  //     });
-  //   }
-  // }
 
   return (
     <div className={"description"}>

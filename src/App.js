@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import './css/style.min.css';
 import Navbar from "./Components/Navbar/Navbar";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
